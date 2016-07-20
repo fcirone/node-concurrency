@@ -1,0 +1,22 @@
+{
+  "name": "node-concurrency",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fcirone/node-concurrency.git"
+  },
+  "keywords": [
+    "concurrency"
+  ],
+  "author": "Fabio Cirone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fcirone/node-concurrency/issues"
+  },
+  "homepage": "https://github.com/fcirone/node-concurrency#readme"
+}
