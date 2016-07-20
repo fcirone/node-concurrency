@@ -1,0 +1,68 @@
+#################
+## WebStorm
+#################
+
+.idea/*
+
+#################
+## Visual Studio
+#################
+*.sln
+supplyCONNECT.v12.suo
+furry-octo-ironman.njsproj
+furry-octo-ironman.sln
+furry-octo-ironman.v12.suo
+.vscode/*
+
+#################
+## Mac
+#################
+.DS_Store
+
+
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+############
+## Node
+############
+
+node_modules/
+npm-debug.log
+
+############
+## Configuration
+############
+config/development.js
+config/production.js
+config/runtime.json
+
+############
+## Misc
+############
+test/out/
+logs/*.log
+*.pst
+/test/selenium
+doc/
+content/locales/en_US.json
+compile.bat
+.ntvs_analysis.dat
+tmp/template.html
+gitReset.bat
+mockCB.bat
+importDemand.bat
+demandmocker.js
+demandMocks.json
+projectFilesBackup/
+content/shared/public/monkeynaut/
+.vscode
+content/shared/public/css/*.css
+/test/coverage
