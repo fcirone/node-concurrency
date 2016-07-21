@@ -1,35 +1,31 @@
-var express = require('express');
 var cluster = require('cluster');
-var os = require('os');//no need to download anything
 
-var PORT = process.env.PORT || 8001;
+if (cluster.isMaster) {
 
-if(cluster.isMaster) {
-   var numWorkers = os.cpus().length;
-   console.log('Master cluster setting up ' + numWorkers + ' workers...');
+    var cpuCount = require('os').cpus().length;
 
-   for(var i = 0; i < numWorkers; i++) {
-       cluster.fork();
-   }
+    for (var i = 0; i < cpuCount; i += 1) {
+        cluster.fork();
+    }
 
-   cluster.on('online', function(worker) {
+    cluster.on('exit', function (worker) {
+        console.log('Worker %d died :(', worker.id);
+        cluster.fork();
+    });
+
+    cluster.on('online', function(worker) {
        console.log('Worker ' + worker.process.pid + ' is online');
-   });
-
-   cluster.on('exit', function(worker, code, signal) {
-       console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
-       console.log('Starting a new worker');
-       cluster.fork();
-   });
+    });
 } else {
-   var app = require('express')();
 
-   app.listen(PORT, function() {
-      console.log('Express server listening on %d, in %s mode', PORT, app.get('env'));
-   });
+    var express = require('express');
+    var app = express();
 
-   // // Start server
-   // server.listen(config.port, config.ip, function () {
-   //   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-   // });
+    app.get('/', function (request, response) {
+        console.log('Request to worker %d', cluster.worker.id);
+        response.send('Worker ' + cluster.worker.id);
+    });
+
+    app.listen(3131);
+    console.log('Worker %d running!', cluster.worker.id);
 }
